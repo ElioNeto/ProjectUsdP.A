@@ -95,3 +95,20 @@ aside form button {
 aside form button:hover{
   background: #6931ca;
 }
+
+aside .btnSearchGroup{
+  width: 100%;
+  border: 0;
+  margin-top: 10px;
+  background: green;
+  border-radius: 2px;
+  padding: 15px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffd;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+aside .btnSearchGroup:hover{
+  background: rgb(1, 104, 1);
+}

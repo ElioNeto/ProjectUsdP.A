@@ -33,9 +33,10 @@ function IncidenteView({ dado, onSubmit, onClick }){
       <br/>
       <p><b><u>Descrição:</u></b> { dado.descricao }</p>
       <form onSubmit={handleDelete}>
+      <button onClick={handleUpdate}>Atualizar</button>
         <button type='submit'>Delete</button>
       </form>
-        <button onClick={handleUpdate}>Atualizar</button>
+        
     </li>
   );
 }

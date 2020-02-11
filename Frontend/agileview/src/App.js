@@ -15,7 +15,7 @@ function App() {
 
   const [dados, setDados] = useState([]);
   const [flg, setFlg] = useState(false)
-  const [msg, setMsg] = useState('Cadastrar')
+  const [msg, setMsg] = useState('')
 
   useEffect(() => {
     async function loadDados(){
@@ -34,7 +34,7 @@ function App() {
 
       const response = await api.get('/incidente')
       setDados(response.data); 
-      setMsg("Cadastrar")
+      setMsg("")
     }else{
       setMsg("Incidente já cadastrado")
     }
@@ -74,21 +74,29 @@ function App() {
     const response = await api.get('/incidente/'+data.grupo)
     setDados(response.data);
   }
+  async function handleSearchByGroupAlternative(data){
+    const response = await api.get('/incidente/'+data)
+    setDados(response.data);
+  }
 
   if(!flg)
   return (
     <div id="app">
       <aside>
-        <strong>{msg}</strong>
+        <strong>Cadastrar</strong>
         <IncidentesForm onSubmit={handleAddData} />
+        <strong>{msg}</strong>
         <SearchGroup onSubmit={handleSearchByGroup}/>
+        <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CANAIS INTERNET BANKING MOBI - SERVICE SUPPORT')}} >CANAIS INTERNET BANKING MOBI - SERVICE SUPPORT</button>
+        <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CANAIS INTERNET BANKING PJ-SERVICE SUPPORT IBM')}} >CANAIS INTERNET BANKING PJ-SERVICE SUPPORT IBM</button>
       </aside>
       
       <main>
         <ul>
+          
           {dados.map(dado => (
             <IncidentesView 
-              key={dado._id} 
+              key={dado._id}
               dado={dado} 
               onSubmit={handleDeleteData}
               onClick={handleUpdateDataPre}/>
