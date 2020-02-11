@@ -33,3 +33,36 @@ li.dev-item header .user-info {
   color: #999;
   margin-top: 2px;
 }
+li form button[type=submit]{
+  width: 100%;
+  border: 0;
+  margin-top: 30px;
+  background: #bb0303;
+  border-radius: 2px;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+li form button[type=submit]:hover{
+  background: #a00303;
+}
+
+li button{
+  width: 100%;
+  border: 0;
+  margin-top: 30px;
+  background: #12bb03;
+  border-radius: 2px;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+li button:hover{
+  background: #10a803;
+}

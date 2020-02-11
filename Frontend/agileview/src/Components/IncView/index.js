@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.css'
 
-function IncidenteView({ dado, onSubmit }){
+function IncidenteView({ dado, onSubmit, onClick }){
 
   const numero = dado.numero
 
@@ -13,20 +13,29 @@ function IncidenteView({ dado, onSubmit }){
     });
   }
 
+  async function handleUpdate(e){
+    e.preventDefault();
+    await onClick({
+      numero,
+    });
+  }
+
   return(
     <li  className='dev-item'>
       <header>
         <h5>{ dado.numero }</h5>
         <div className='user-info'>
-          <strong>Grupo: { dado.grupo }</strong>
+          <strong>{ dado.grupo }</strong>
+          <br/>
           Comentário: <span>{ dado.comentario }</span>
         </div>
       </header>
-      <p>Descrição: { dado.descricao }</p>
+      <br/>
+      <p><b><u>Descrição:</u></b> { dado.descricao }</p>
       <form onSubmit={handleDelete}>
         <button type='submit'>Delete</button>
       </form>
-      
+        <button onClick={handleUpdate}>Atualizar</button>
     </li>
   );
 }

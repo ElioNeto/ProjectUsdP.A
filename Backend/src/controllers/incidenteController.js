@@ -29,6 +29,7 @@ module.exports = {
     //Busca pelo numero do incidente para ver se já existe
     let inc = await incidente.findOne({ numero });  
     
+    
     //Se não existe, cria o registro no banco de dados
     if(!inc){
       const inc = await incidente.create({
@@ -37,6 +38,7 @@ module.exports = {
         grupo,
         comentario
       }) 
+
     }
     //Retorna uma resposta em JSON
     return response.json(inc);
@@ -45,6 +47,13 @@ module.exports = {
   async searchByGroup(req, res) {
     const { grupo } = req.params;
     const inc = await incidente.find({grupo});
+    
+    return res.json(inc === null ? {} : inc);
+  },
+
+  async searchByNumber(req, res) {
+    const { numero } = req.params;
+    const inc = await incidente.find({numero});
     
     return res.json(inc === null ? {} : inc);
   },
