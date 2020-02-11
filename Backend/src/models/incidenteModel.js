@@ -5,6 +5,10 @@ const incidenteSchema = new mongoose.Schema({
   grupo: String,
   descricao: String,
   comentario: String,
+  rdm: String,
+  responsavel: String,
+  status: String,
+  resumo: String
 })
 
 module.exports = mongoose.model('Incidente', incidenteSchema);

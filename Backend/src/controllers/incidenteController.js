@@ -23,7 +23,11 @@ module.exports = {
       numero, 
       grupo, 
       descricao, 
-      comentario 
+      comentario,
+      rdm,
+      status,
+      resumo,
+      responsavel 
     } = request.body;
 
     //Busca pelo numero do incidente para ver se já existe
@@ -36,7 +40,11 @@ module.exports = {
         numero,
         descricao,
         grupo,
-        comentario
+        comentario,
+        rdm,
+        status,
+        resumo,
+        responsavel 
       }) 
 
     }
@@ -65,6 +73,10 @@ module.exports = {
       descricao,
       grupo,
       comentario,
+      rdm,
+      status,
+      responsavel,
+      resumo,
       ...rest
     } = req.body;
     rest.numero = numero;
@@ -74,6 +86,14 @@ module.exports = {
       rest.grupo = grupo;
     if (comentario)
       rest.comentario = comentario;
+    if (rdm)
+      rest.rdm = rdm;
+    if (status)
+      rest.status = status;
+    if (resumo)
+      rest.resumo = resumo;
+    if (responsavel)
+      rest.responsavel = responsavel;
     const newIncidente = await incidente.updateOne({ numero }, {
         ...rest
     });

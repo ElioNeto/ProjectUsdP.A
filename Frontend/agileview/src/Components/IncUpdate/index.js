@@ -8,6 +8,10 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
   const [grupo, setGrupo] = useState(data.grupo);
   const [descricao, setDescricao] = useState(data.descricao);
   const [comentario, setComentario] = useState(data.comentario);
+  const [responsavel, setResponsavel] = useState(data.responsavel);
+  const [rdm, setRdm] = useState(data.rdm);
+  const [status, setStatus] = useState(data.status);
+  const [resumo, setResumo] = useState(data.resumo);
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -15,13 +19,20 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
       numero,
       grupo,
       descricao,
-      comentario
+      comentario,
+      responsavel,
+      rdm,
+      status,
+      resumo
     });
     setNumero('');
     setGrupo('');
     setDescricao('');
     setComentario('');
-    
+    setResponsavel('');
+    setRdm('');
+    setStatus('');
+    setResumo('');
   }
 
   async function back(e){
@@ -41,8 +52,7 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
             id='numero' 
             required
             value={numero}
-            onChange={e => setNumero(e.target.value)} 
-            disabled/>
+            onChange={e => setNumero(e.target.value)} />
         </div>
         <div className='input-block'>
           <label htmlFor="grupo">Grupo</label>
@@ -53,6 +63,43 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
             value={grupo}
             onChange={e => setGrupo(e.target.value)} />
         </div>
+      </div>
+      <div className='input-block'>
+        <label htmlFor="descricao">Responsável</label>
+        <input 
+          name='responsavel' 
+          id='responsavel' 
+          required 
+          value={responsavel}
+          onChange = { e => setResponsavel(e.target.value) }/>
+      </div>
+      <div className="input-group">
+        <div className='input-block'>
+          <label htmlFor="numero">Status</label>
+          <input 
+            name='status' 
+            id='status' 
+            required
+            value={status}
+            onChange={e => setStatus(e.target.value)} />
+        </div>
+        <div className='input-block'>
+          <label htmlFor="grupo">RDM</label>
+          <input 
+            name='rdm' 
+            id='rdm' 
+            value={rdm}
+            onChange={e => setRdm(e.target.value)} />
+        </div>
+      </div>
+      <div className='input-block'>
+        <label htmlFor="descricao">Resumo</label>
+        <input 
+          name='resumo' 
+          id='resumo' 
+          required 
+          value={resumo}
+          onChange = { e => setResumo(e.target.value) }/>
       </div>
       <div className='input-block'>
         <label htmlFor="descricao">Descricao</label>

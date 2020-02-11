@@ -78,17 +78,25 @@ function App() {
     const response = await api.get('/incidente/'+data)
     setDados(response.data);
   }
+  async function loadData(){
+    const response = await api.get('/incidente')
+    setDados(response.data);
+  }
 
   if(!flg)
   return (
     <div id="app">
       <aside>
         <strong>Cadastrar</strong>
+        <span>Total de incidentes cadastrados: </span><strong>{dados.length}</strong>
         <IncidentesForm onSubmit={handleAddData} />
         <strong>{msg}</strong>
         <SearchGroup onSubmit={handleSearchByGroup}/>
+        <button className='btnSearchGroup' onClick={loadData} >TODOS</button>
         <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CANAIS INTERNET BANKING MOBI - SERVICE SUPPORT')}} >CANAIS INTERNET BANKING MOBI - SERVICE SUPPORT</button>
         <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CANAIS INTERNET BANKING PJ-SERVICE SUPPORT IBM')}} >CANAIS INTERNET BANKING PJ-SERVICE SUPPORT IBM</button>
+        <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CAN - CANAIS DIGITAIS')}} >CAN - CANAIS DIGITAIS</button>
+        <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CANAIS INTERNET BANKING PF - SERVICE SUPPORT')}} >CANAIS INTERNET BANKING PF - SERVICE SUPPORT</button>
       </aside>
       
       <main>

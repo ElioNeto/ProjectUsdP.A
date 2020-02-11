@@ -27,11 +27,15 @@ function IncidenteView({ dado, onSubmit, onClick }){
         <div className='user-info'>
           <strong>{ dado.grupo }</strong>
           <br/>
-          Comentário: <span>{ dado.comentario }</span>
+          Status: <span>{ dado.status }</span><br/>
+          RDM: <span>{ dado.rdm }</span><br/>
+          Responsável: <span>{ dado.responsavel }</span>
         </div>
       </header>
       <br/>
+      <p><b><u>Resumo:</u></b> { dado.resumo }</p>
       <p><b><u>Descrição:</u></b> { dado.descricao }</p>
+      <p><b><u>Comentário:</u></b> { dado.comentario }</p>
       <form onSubmit={handleDelete}>
       <button onClick={handleUpdate}>Atualizar</button>
         <button type='submit'>Delete</button>

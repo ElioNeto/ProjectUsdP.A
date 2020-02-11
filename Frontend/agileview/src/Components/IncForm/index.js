@@ -8,6 +8,10 @@ function IncidentesForm({ onSubmit }){
   const [grupo, setGrupo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [comentario, setComentario] = useState('');
+  const [responsavel, setResponsavel] = useState('');
+  const [rdm, setRdm] = useState('');
+  const [status, setStatus] = useState('');
+  const [resumo, setResumo] = useState('');
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -15,13 +19,20 @@ function IncidentesForm({ onSubmit }){
       numero,
       grupo,
       descricao,
-      comentario
+      comentario,
+      responsavel,
+      rdm,
+      status,
+      resumo
     });
     setNumero('');
     setGrupo('');
     setDescricao('');
     setComentario('');
-    
+    setResponsavel('');
+    setRdm('');
+    setStatus('');
+    setResumo('');
   }
 
   return(
@@ -46,6 +57,43 @@ function IncidentesForm({ onSubmit }){
             value={grupo}
             onChange={e => setGrupo(e.target.value)} />
         </div>
+      </div>
+      <div className='input-block'>
+        <label htmlFor="responsavel">Responsável</label>
+        <input 
+          name='responsavel' 
+          id='responsavel' 
+          required 
+          value={responsavel}
+          onChange = { e => setResponsavel(e.target.value) }/>
+      </div>
+      <div className="input-group">
+        <div className='input-block'>
+          <label htmlFor="status">Status</label>
+          <input 
+            name='status' 
+            id='status' 
+            required
+            value={status}
+            onChange={e => setStatus(e.target.value)} />
+        </div>
+        <div className='input-block'>
+          <label htmlFor="rdm">RDM</label>
+          <input 
+            name='rdm' 
+            id='rdm' 
+            value={rdm}
+            onChange={e => setRdm(e.target.value)} />
+        </div>
+      </div>
+      <div className='input-block'>
+        <label htmlFor="resumo">Resumo</label>
+        <input 
+          name='resumo' 
+          id='resumo' 
+          required 
+          value={resumo}
+          onChange = { e => setResumo(e.target.value) }/>
       </div>
       <div className='input-block'>
         <label htmlFor="descricao">Descricao</label>
