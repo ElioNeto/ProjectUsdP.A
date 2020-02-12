@@ -8,7 +8,8 @@ const incidenteSchema = new mongoose.Schema({
   rdm: String,
   responsavel: String,
   status: String,
-  resumo: String
+  resumo: String,
+  abertura: String,
 })
 
 module.exports = mongoose.model('Incidente', incidenteSchema);

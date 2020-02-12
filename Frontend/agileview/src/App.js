@@ -14,7 +14,7 @@ import SearchGroup from './Components/searchGroup'
 function App() {
 
   const [dados, setDados] = useState([]);
-  const [flg, setFlg] = useState(false)
+  const [flg, setFlg] = useState('Cadastrar')
   const [msg, setMsg] = useState('')
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function App() {
     const response = await api.get('/incidente/one/'+data.numero)
     setDados(response.data);
     if(dados)
-      setFlg(true)
+      setFlg('Editar')
   }
 
   async function handleUpdateData(data){
@@ -61,13 +61,13 @@ function App() {
     await api.put('/incidente/'+data.numero, data)
     const response = await api.get('/incidente');
     setDados(response.data);
-    setFlg(false)
+    setFlg('Cadastrar')
   }
 
   async function handleBack(e){
     const response = await api.get('/incidente');
-      setDados(response.data);
-    setFlg(false)
+    setDados(response.data);
+    setFlg('Cadastrar')
   }
 
   async function handleSearchByGroup(data){
@@ -83,7 +83,7 @@ function App() {
     setDados(response.data);
   }
 
-  if(!flg)
+  if(flg === 'Cadastrar')
   return (
     <div id="app">
       <aside>
@@ -98,10 +98,8 @@ function App() {
         <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CAN - CANAIS DIGITAIS')}} >CAN - CANAIS DIGITAIS</button>
         <button className='btnSearchGroup' onClick={() => {handleSearchByGroupAlternative('CANAIS INTERNET BANKING PF - SERVICE SUPPORT')}} >CANAIS INTERNET BANKING PF - SERVICE SUPPORT</button>
       </aside>
-      
       <main>
         <ul>
-          
           {dados.map(dado => (
             <IncidentesView 
               key={dado._id}
@@ -113,7 +111,7 @@ function App() {
       </main> 
     </div>
   );
-  else
+  else if(flg === 'Editar')
   return(
     <div id="app">
     <aside>

@@ -12,6 +12,7 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
   const [rdm, setRdm] = useState(data.rdm);
   const [status, setStatus] = useState(data.status);
   const [resumo, setResumo] = useState(data.resumo);
+  const [abertura, setAbertura] = useState(data.abertura);
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -23,7 +24,8 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
       responsavel,
       rdm,
       status,
-      resumo
+      resumo,
+      abertura
     });
     setNumero('');
     setGrupo('');
@@ -33,11 +35,11 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
     setRdm('');
     setStatus('');
     setResumo('');
+    setAbertura('');
   }
 
   async function back(e){
     await onClick({});
-   
   }
 
   return(
@@ -69,9 +71,17 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
         <input 
           name='responsavel' 
           id='responsavel' 
-          required 
           value={responsavel}
           onChange = { e => setResponsavel(e.target.value) }/>
+      </div>
+      <div className='input-block'>
+        <label htmlFor="abertura">Data de Abertura</label>
+        <input 
+          name='abertura' 
+          id='abertura' 
+          required 
+          value={abertura}
+          onChange = { e => setAbertura(e.target.value) }/>
       </div>
       <div className="input-group">
         <div className='input-block'>
@@ -114,15 +124,13 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
         <label htmlFor="comentario">Comentário</label>
         <input 
           name='comentario' 
-          id='comentario' 
-          required 
+          id='comentario'
           value={comentario}
           onChange = { e => setComentario(e.target.value) }/>
       </div>
       <button type="submit">Salvar</button>
       <button onClick={back}>Voltar</button>
     </form>
-    
     </>
   )
 }

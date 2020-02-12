@@ -2,7 +2,7 @@ const axios = require('axios');
 const incidente = require('../models/incidenteModel');
 
 module.exports = {
-  /*************************************  
+/*************************************  
  *  Método para buscar todos os incidentes
  *  Autor: Elio Neto
  *  Versão: 0.1
@@ -27,7 +27,8 @@ module.exports = {
       rdm,
       status,
       resumo,
-      responsavel 
+      responsavel,
+      abertura, 
     } = request.body;
 
     //Busca pelo numero do incidente para ver se já existe
@@ -44,14 +45,19 @@ module.exports = {
         rdm,
         status,
         resumo,
-        responsavel 
+        responsavel,
+        abertura 
       }) 
 
     }
     //Retorna uma resposta em JSON
     return response.json(inc);
   },
-
+/*************************************  
+ *  Método de busca por grupo
+ *  Autor: Elio Neto
+ *  Versão: 0.1
+ ************************************/
   async searchByGroup(req, res) {
     const { grupo } = req.params;
     const inc = await incidente.find({grupo});
@@ -59,13 +65,23 @@ module.exports = {
     return res.json(inc === null ? {} : inc);
   },
 
+/*************************************  
+ *  Método de busca por número
+ *  Autor: Elio Neto
+ *  Versão: 0.1
+ ************************************/
   async searchByNumber(req, res) {
     const { numero } = req.params;
     const inc = await incidente.find({numero});
     
     return res.json(inc === null ? {} : inc);
   },
-
+  
+/*************************************  
+ *  Método de atualização de registro
+ *  Autor: Elio Neto
+ *  Versão: 0.1
+ ************************************/
   async update(req, res) {
     const { numero } = req.params;
     const inc = await incidente.findOne({numero});
@@ -77,6 +93,7 @@ module.exports = {
       status,
       responsavel,
       resumo,
+      abertura,
       ...rest
     } = req.body;
     rest.numero = numero;
@@ -94,6 +111,8 @@ module.exports = {
       rest.resumo = resumo;
     if (responsavel)
       rest.responsavel = responsavel;
+    if (abertura)
+      rest.abertura = abertura
     const newIncidente = await incidente.updateOne({ numero }, {
         ...rest
     });
@@ -104,18 +123,25 @@ module.exports = {
     });
   },
 
+/*************************************  
+ *  Método de exclusão
+ *  Autor: Elio Neto
+ *  Versão: 0.1
+ ************************************/
   async delete(req, res) {
     const { numero } = req.params;
     await incidente.deleteOne({ numero });
     return res.json();
   },
+
+/*************************************  
+ *  Método de exclusão por ID
+ *  Autor: Elio Neto
+ *  Versão: 0.1
+ ************************************/
   async deleteById(req, res) {
     const { _id } = req.params;
     await incidente.deleteOne({ _id });
     return res.json();
   },
 };
-
-
-
-//5e3dd18158e33d224640908a
