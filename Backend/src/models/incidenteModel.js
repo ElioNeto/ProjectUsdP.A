@@ -10,6 +10,7 @@ const incidenteSchema = new mongoose.Schema({
   status: String,
   resumo: String,
   abertura: String,
+  atualizacao: String,
 })
 
 module.exports = mongoose.model('Incidente', incidenteSchema);

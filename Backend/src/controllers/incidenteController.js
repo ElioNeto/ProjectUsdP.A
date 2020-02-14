@@ -28,7 +28,8 @@ module.exports = {
       status,
       resumo,
       responsavel,
-      abertura, 
+      abertura,
+      atualizacao 
     } = request.body;
 
     //Busca pelo numero do incidente para ver se já existe
@@ -46,7 +47,8 @@ module.exports = {
         status,
         resumo,
         responsavel,
-        abertura 
+        abertura,
+        atualizacao 
       }) 
 
     }
@@ -94,6 +96,7 @@ module.exports = {
       responsavel,
       resumo,
       abertura,
+      atualizacao,
       ...rest
     } = req.body;
     rest.numero = numero;
@@ -113,6 +116,8 @@ module.exports = {
       rest.responsavel = responsavel;
     if (abertura)
       rest.abertura = abertura
+    if (atualizacao)
+      rest.atualizacao = atualizacao
     const newIncidente = await incidente.updateOne({ numero }, {
         ...rest
     });

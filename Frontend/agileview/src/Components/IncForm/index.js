@@ -13,6 +13,7 @@ function IncidentesForm({ onSubmit }){
   const [status, setStatus] = useState('');
   const [resumo, setResumo] = useState('');
   const [abertura, setAbertura] = useState('');
+  const [atualizacao, setAtualizacao] = useState('');
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -25,7 +26,8 @@ function IncidentesForm({ onSubmit }){
       rdm,
       status,
       resumo,
-      abertura
+      abertura,
+      atualizacao,
     });
     setNumero('');
     setGrupo('');
@@ -36,6 +38,7 @@ function IncidentesForm({ onSubmit }){
     setStatus('');
     setResumo('');
     setAbertura('');
+    setAtualizacao('');
   }
 
   return(
@@ -72,11 +75,21 @@ function IncidentesForm({ onSubmit }){
       <div className='input-block'>
         <label htmlFor="abertura">Data de Abertura</label>
         <input 
+          type='date' 
           name='abertura' 
           id='abertura' 
           required 
           value={abertura}
           onChange = { e => setAbertura(e.target.value) }/>
+      </div>
+      <div className='input-block'>
+        <label htmlFor="atualizacao">Data de Atualização</label>
+        <input 
+          type='date'
+          name='atualizacao' 
+          id='atualizacao'
+          value={atualizacao}
+          onChange = { e => setAtualizacao(e.target.value) }/>
       </div>
       <div className="input-group">
         <div className='input-block'>

@@ -31,6 +31,7 @@ function IncidenteView({ dado, onSubmit, onClick }){
           {dado.rdm ? <> RDM: <span>{ dado.rdm }</span><br/> </>: <></>}
           {dado.responsavel ? <> Responsável: <span>{ dado.responsavel }</span><br/></> : <></>}
           Data de Abertura: <span>{ dado.abertura }</span>
+          {dado.atualizacao ? <> <br/>Última atualização: <span>{ dado.atualizacao }</span><br/></> : <></>}
         </div>
       </header>
       <br/>
