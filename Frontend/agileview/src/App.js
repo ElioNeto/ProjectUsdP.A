@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import api from './Services/api';
+import apiUsd from './Services/api';
+import apiMongo from './Services/apiMongo'
 
 import './global.css';
 import './App.css';
@@ -10,6 +11,7 @@ import IncidentesForm from './Components/IncForm'
 import IncidentesView from './Components/IncView'
 import IncidentesUpdate from './Components/IncUpdate'
 import SearchGroup from './Components/searchGroup'
+import BtnAtualizar from './Components/BtnAtualizar'
 
 function App() {
 
@@ -19,20 +21,20 @@ function App() {
 
   useEffect(() => {
     async function loadDados(){
-      const response = await api.get('/incidente');
+      const response = await apiMongo.get('/incidente');
       setDados(response.data);
     }
     loadDados();
   }, []);
 
   async function handleAddData(data){
-    const response = await api.get('/incidente/one/'+data.numero)
+    const response = await apiUsd.get('/incidente/one/'+data.numero)
 
     if(response.data.length<=0){
 
-      await api.post('/incidente', data)
+      await apiUsd.post('/incidente', data)
 
-      const response = await api.get('/incidente')
+      const response = await apiUsd.get('/incidente')
       setDados(response.data); 
       setMsg("")
     }else{
@@ -42,44 +44,50 @@ function App() {
 
   async function handleDeleteData(data){
 
-    await api.delete('/incidente/'+data.numero)
-    const response = await api.get('/incidente')
+    await apiUsd.delete('/incidente/'+data.numero)
+    const response = await apiMongo.get('/incidente')
     setDados(response.data); 
   }
 
   async function handleUpdateDataPre(data){
-    setDados([]);
-    const response = await api.get('/incidente/one/'+data.numero)
+   /*  setDados([]);
+    const response = await apiUsd.get('/incidente/one/'+data.numero)
     setDados(response.data);
     if(dados)
-      setFlg('Editar')
+      setFlg('Editar') */
+      console.log(data.numero)
   }
 
   async function handleUpdateData(data){
 
-    await api.get('/incidente/'+data.numero)
-    await api.put('/incidente/'+data.numero, data)
-    const response = await api.get('/incidente');
+    await apiUsd.get('/incidente/'+data.numero)
+    await apiUsd.put('/incidente/'+data.numero, data)
+    const response = await apiUsd.get('/incidente');
     setDados(response.data);
     setFlg('Cadastrar')
   }
 
   async function handleBack(e){
-    const response = await api.get('/incidente');
+    const response = await apiUsd.get('/incidente');
     setDados(response.data);
     setFlg('Cadastrar')
   }
 
   async function handleSearchByGroup(data){
-    const response = await api.get('/incidente/'+data.grupo)
+    const response = await apiUsd.get('/incidente/'+data.grupo)
     setDados(response.data);
   }
   async function handleSearchByGroupAlternative(data){
-    const response = await api.get('/incidente/'+data)
+    const response = await apiUsd.get('/incidente/'+data)
     setDados(response.data);
   }
   async function loadData(){
-    const response = await api.get('/incidente')
+    const response = await apiUsd.get('/incidente')
+    setDados(response.data);
+  }
+
+  async function handlePostApiUpdate(){
+    const response = await apiUsd.get('/busca')
     setDados(response.data);
   }
 
@@ -89,6 +97,7 @@ function App() {
       <aside>
         <strong>Cadastrar</strong>
         <span>Total de incidentes cadastrados: </span><strong>{dados.length}</strong>
+        <BtnAtualizar onClick={handlePostApiUpdate}/>
         <IncidentesForm onSubmit={handleAddData} />
         <strong>{msg}</strong>
         <SearchGroup onSubmit={handleSearchByGroup}/>
