@@ -11,7 +11,7 @@ export default function BtnAtualizar ({onClick}){
 
   return(
     <>
-      <button onClick={chamaApi}>Atualizar</button>
+      <button onClick={chamaApi} className='atualizar' >Atualizar</button>
     </>
   )
 }

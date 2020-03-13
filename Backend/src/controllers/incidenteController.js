@@ -20,16 +20,18 @@ module.exports = {
   async store (request, response) {
     //Espera a request via JSON
     const { 
-      numero, 
-      grupo, 
-      descricao, 
-      comentario,
+      numero,
+      migrado,
+      grupoName,
+      grupo,
+      dta,
+      dtaUpd,
+      des,
+      res,
       rdm,
       status,
-      resumo,
       responsavel,
-      abertura,
-      atualizacao 
+      comentario
     } = request.body;
 
     //Busca pelo numero do incidente para ver se já existe
@@ -38,19 +40,25 @@ module.exports = {
     
     //Se não existe, cria o registro no banco de dados
     if(!inc){
-      const inc = await incidente.create({
+      await incidente.create({
         numero,
-        descricao,
+        migrado,
+        grupoName,
         grupo,
-        comentario,
+        dta,
+        dtaUpd,
+        des,
+        res,
         rdm,
         status,
-        resumo,
         responsavel,
-        abertura,
-        atualizacao 
+        comentario
       }) 
 
+    }
+    else{
+      console.log('Registro já existe')
+      return response.json({msg:'Registro já existe'});
     }
     //Retorna uma resposta em JSON
     return response.json(inc);
@@ -84,24 +92,26 @@ module.exports = {
  *  Autor: Elio Neto
  *  Versão: 0.1
  ************************************/
-  async update(req, res) {
+  async update(req, response) {
     const { numero } = req.params;
     const inc = await incidente.findOne({numero});
     const { 
-      descricao,
+      migrado,
+      grupoName,
       grupo,
-      comentario,
+      dta,
+      dtaUpd,
+      des,
+      res,
       rdm,
       status,
       responsavel,
-      resumo,
-      abertura,
-      atualizacao,
+      comentario,
       ...rest
     } = req.body;
     rest.numero = numero;
-    if (descricao)
-      rest.descricao = descricao;
+    if (des)
+      rest.des = des;
     if (grupo)
       rest.grupo = grupo;
     if (comentario)
@@ -110,19 +120,21 @@ module.exports = {
       rest.rdm = rdm;
     if (status)
       rest.status = status;
-    if (resumo)
-      rest.resumo = resumo;
+    if (res)
+      rest.res = res;
     if (responsavel)
       rest.responsavel = responsavel;
-    if (abertura)
-      rest.abertura = abertura
-    if (atualizacao)
-      rest.atualizacao = atualizacao
+    if (dta)
+      rest.dta = dta
+    if (dtaUpd)
+      rest.dtaUpd = dtaUpd
+    if (grupoName)
+      rest.grupoName = grupoName
     const newIncidente = await incidente.updateOne({ numero }, {
         ...rest
     });
 
-    return res.json({
+    return response.json({
         modifiedCount: newIncidente.nModified,
         ok: newIncidente.ok
     });

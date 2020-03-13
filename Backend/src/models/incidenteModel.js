@@ -2,15 +2,17 @@ const mongoose = require('mongoose');
 
 const incidenteSchema = new mongoose.Schema({
   numero: String,
+  migrado: String,
+  grupoName: String,
   grupo: String,
-  descricao: String,
-  comentario: String,
+  dta: String,
+  dtaUpd: String,
+  des: String,
+  res: String,
   rdm: String,
-  responsavel: String,
   status: String,
-  resumo: String,
-  abertura: String,
-  atualizacao: String,
+  responsavel: String,
+  comentario: String,
 })
 
 module.exports = mongoose.model('Incidente', incidenteSchema);

@@ -6,11 +6,11 @@ aside{
   padding: 30px 20px;
 }
 
-aside strong {
+aside span strong {
   font-size: 20px;
   text-align: center;
   display: block;
-  color: #333;
+  color: rgb(83, 77, 77);
 }
 
 aside span {
@@ -117,4 +117,22 @@ aside .btnSearchGroup{
 }
 aside .btnSearchGroup:hover{
   background: rgb(1, 104, 1);
+}
+
+aside .btnSearchGroupCaos{
+  width: 100%;
+  border: 0;
+  margin-top: 10px;
+  background: red;
+  border-radius: 2px;
+  padding: 15px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffd;
+  cursor: pointer;
+  transition: background 0.5s;
+}
+
+aside .btnSearchGroupCaos:hover{
+  background: rgb(121, 4, 4); 
 }

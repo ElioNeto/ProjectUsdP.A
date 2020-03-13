@@ -2,32 +2,32 @@ import React, { useState } from 'react';
 
 import './style.css'
 
-function IncidentesUpdate({ onSubmit, data, onClick }){
+function IncidentesUpdate({ onSubmit, data, onClick}){
 
   const [numero, setNumero] = useState(data.numero);
-  const [grupo, setGrupo] = useState(data.grupo);
-  const [descricao, setDescricao] = useState(data.descricao);
+  const [grupoName, setGrupo] = useState(data.grupoName);
+  const [des, setDescricao] = useState(data.des);
   const [comentario, setComentario] = useState(data.comentario);
   const [responsavel, setResponsavel] = useState(data.responsavel);
   const [rdm, setRdm] = useState(data.rdm);
   const [status, setStatus] = useState(data.status);
-  const [resumo, setResumo] = useState(data.resumo);
-  const [abertura, setAbertura] = useState(data.abertura);
-  const [atualizacao, setAtualizacao] = useState(data.atualizacao);
+  const [res, setResumo] = useState(data.res);
+  const [dta, setAbertura] = useState(data.dta);
+  const [dtaUpd, setAtualizacao] = useState(data.dtaUpd);
 
   async function handleSubmit(e){
     e.preventDefault();
     await onSubmit({
       numero,
-      grupo,
-      descricao,
+      grupoName,
+      des,
       comentario,
       responsavel,
       rdm,
       status,
-      resumo,
-      abertura,
-      atualizacao,
+      res,
+      dta,
+      dtaUpd,
     });
     setNumero('');
     setGrupo('');
@@ -52,12 +52,12 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
         <div className='input-block'>
           <label htmlFor="numero">Número</label>
           <input 
-            type='number' 
+            type='text' 
             name='numero' 
             id='numero' 
             required
             value={numero}
-            onChange={e => setNumero(e.target.value)} />
+            onChange={e => setNumero(e.target.value)} disabled/>
         </div>
         <div className='input-block'>
           <label htmlFor="grupo">Grupo</label>
@@ -65,7 +65,7 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
             name='grupo' 
             id='grupo' 
             required
-            value={grupo}
+            value={grupoName}
             onChange={e => setGrupo(e.target.value)} />
         </div>
       </div>
@@ -80,20 +80,20 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
       <div className='input-block'>
         <label htmlFor="abertura">Data de Abertura</label>
         <input 
-          type='date' 
-          name='abertura' 
+          type='text' 
+          name='dta' 
           id='abertura' 
           required 
-          value={abertura}
+          value={dta}
           onChange = { e => setAbertura(e.target.value) }/>
       </div>
       <div className='input-block'>
         <label htmlFor="atualizacao">Data de Atualização</label>
         <input 
-          type='date'
+          type='text'
           name='atualizacao' 
           id='atualizacao'
-          value={atualizacao}
+          value={dtaUpd}
           onChange = { e => setAtualizacao(e.target.value) }/>
       </div>
       <div className="input-group">
@@ -121,7 +121,7 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
           name='resumo' 
           id='resumo' 
           required 
-          value={resumo}
+          value={res}
           onChange = { e => setResumo(e.target.value) }/>
       </div>
       <div className='input-block'>
@@ -130,7 +130,7 @@ function IncidentesUpdate({ onSubmit, data, onClick }){
           name='descricao' 
           id='descricao' 
           required 
-          value={descricao}
+          value={des}
           onChange = { e => setDescricao(e.target.value) }/>
       </div>
       <div className='input-block'>

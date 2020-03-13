@@ -16,7 +16,7 @@ function SearchGroup({ onSubmit }){
 
   return(
     <form onSubmit={handleSubmit} >
-        <center><h5>Ou</h5></center> <br/>
+        {/* <center><h5>Ou</h5></center> <br/> */}
         <div className='input-block'>
           <label htmlFor="grupo">Buscar por Grupo</label>
           <input 
